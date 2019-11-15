@@ -1,0 +1,34 @@
+so have 5 variables, lets call them x1-x5
+and when you play a "game" you play 5 rounds, each of which saves the outcome win or loss into the x1=x5 variables. then have a function which counts if there are more wins or losses, and gives you the result.
+is this gonna be || or &&?
+
+Maybe we can give it values, each win adds 1 point, and if the sum total is 3 or more it returns win, if the result is 2 or less, it gives you loss
+
+how do you create a variable, which is a number , which other pieces of code can add to or remove from?
+
+ah, There is probably a simpler way to do it, but you can simply create a function which adds up x1-x5. Do you make that into a variable then?
+so something like let y = x1 + x2 and then if (y <=2) {console.log('loss'} else {console.log('win')};
+
+so how are you going to get the function to play 5 rounds to be recorded?
+There is no hurry here, you can take your time to figure this out. Remember, in this case, what is truly of value is the process of learning. Of course you are aiming at specific results, but you need to be unattached to the result, simply use it as a reference for whether you are doing it right.
+
+So how are you going to make a function that lets you play 5 rounds, and records the result of each round into a seperate variable?
+
+Let the function game() call the function playRound() somehow.
+
+The code is gonna have to be a little bit more complicated, because we can have a draw in a 5 round match as well. if you have draws within said game.
+
+But how do we make it, so that the original function doesn't just return the string, but also changes a variable into one of three states?
+
+With the addition of draws, I think we can't rely on simply above or below 2 wins. 
+
+so it has to be true or false, and then undifined? but is not undifined the same as false?
+
+then I guess you have to count the number of wins
+so if there is a win, the variable win is increased by 1?
+and if there is a loss, the variable loss is increased by 1?
+and a draw simply does not add to anything.
+So in the end if win is higher than loss, a win is declared, if loss is higher than win, a loss is declared. If win and loss are equal, a draw is declared.
+
+So how do I store the results of the rounds? How do I simplify the output, so that it simply registers as +1 to the win or loss variable?
+

@@ -1,33 +1,110 @@
-<script>
-      
+<!DOCTYPE html>
+<html>
 
-    
-    function computerPlay() {
-    let x = (Math.floor(Math.random() * 3) + 1);
-    console.log(x);
-    if (x === 1) {return 'rock'}
-    else if ( x === 2) {return 'paper'}
-    else if (x === 3) {return 'scissors'};
-}
+<body>
+  <h1>RPS 5 rounds, GO!</h1>
+  <div id="board">
+    <p></p>
+  </div>
 
-let x = computerPlay();
+  <div>
+    <button id="rock">Rock!</button>
+    <button id="paper">Paper!</button>
+    <button id="scissors">Scissors!</button>
+  </div>
+  <div id="div">
 
+  </div>
+  <script>
 
+    const div = document.querySelector("#div")
+    const rock = document.querySelector("#rock")
+    const paper = document.querySelector("#paper")
+   
+    const scissors = document.querySelector("#scissors")
+    const board = document.querySelector("#board")
+    const para = document.createElement('p');
 
-function playRound() {
-    let input = prompt('Rock Paper scissors');
-    let lcinput = input.toLowerCase();
-    console.log(`player chose ${lcinput}, and computer chose ${x}.`);
-    if (input == x) { return 'draw'; }
-    else if (lcinput == 'rock' && x == 'paper' )  {return 'You Lose! Paper beats rock!'}
-    else if (lcinput == 'rock' && x == 'scissors' )  {return 'You Win! Rock beats scissors!'}
-    else if (lcinput == 'paper' && x == 'scissors' )  {return 'You Lose! scissors beats paper!'}
-    else if (lcinput == 'paper' && x == 'rock' )  {return 'You Win! Paper beats rock!'}
-    else if (lcinput == 'scissors' && x == 'rock' )  {return 'You Lose! Rock beats scissors!'}
-    else if (lcinput == 'scissors' && x == 'paper' )  {return 'You Win! scissors beats paper!'}
+    let win = 0;
+    let loss = 0;
 
-}
-console.log(playRound ());
+    para.textContent = `Player ${win} Computer ${loss}`;
+    board.appendChild(para);
 
+    rock.addEventListener("click", () => {
+      playRound("rock");
+    });
+    paper.addEventListener("click", () => {
+      playRound("paper");
+    });
+    scissors.addEventListener("click", () => {
+      playRound("scissors");
+    });
 
-    </script>
+  
+    function printScore(text) {
+      const score = document.createElement('p')
+      score.textContent = text
+      div.appendChild(score)
+    }
+    function update() {
+      para.textContent = `Player ${win} Computer ${loss}`;
+    }
+    function playRound(input) {
+      update();
+
+      let x = computerPlay();
+      //let input = prompt('Rock Paper scissors');
+      let lcinput = input.toLowerCase();
+      function computerPlay() {
+        let x = (Math.floor(Math.random() * 3) + 1);
+        //console.log(x);
+        if (x === 1) { return 'rock' }
+        else if (x === 2) { return 'paper' }
+        else if (x === 3) { return 'scissors' };
+      }
+
+      console.log(`player chose ${lcinput}, and computer chose ${x}.`);
+      if (lcinput == x) { printScore('draw'); }
+      else if (lcinput == 'rock' && x == 'paper') { printScore('You Lose! Paper beats rock!'), ++loss }
+      else if (lcinput == 'rock' && x == 'scissors') { printScore('You Win! Rock beats scissors!'), ++win }
+      else if (lcinput == 'paper' && x == 'scissors') { printScore('You Lose! scissors beats paper!'), ++loss }
+      else if (lcinput == 'paper' && x == 'rock') { printScore('You Win! Paper beats rock!'), ++win }
+      else if (lcinput == 'scissors' && x == 'rock') { printScore('You Lose! Rock beats scissors!'), ++loss }
+      else if (lcinput == 'scissors' && x == 'paper') { printScore('You Win! scissors beats paper!'), ++win };
+      update();
+      if (win == 5 || loss == 5) { // Declare results
+        if (win == 5) {
+          para.textContent = "Player wins!"
+          win = 0;
+          loss = 0;
+        }
+        if (loss == 5) {
+          para.textContent = "Computer Wins!"
+          win = 0;
+          loss = 0;
+        }
+        while (div.firstChild) {  // remove old game results
+          div.removeChild(div.firstChild);
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
+        //console.log(playRound());
+
+            
+
+        /*function game() {
+        playRound();
+        playRound();
+        playRound();
+        playRound();
+        playRound();
+        if (win === loss) {console.log('it\'s a draw!')}
+        else if (win > loss) {console.log('You win!')}
+        else if (loss > win) {console.log('You lose!')};
+        
+        };*/
